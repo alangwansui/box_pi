@@ -7,6 +7,7 @@ Network = escpos.Network
 #####################################################
 content = 'ABCDE'
 key = '192.168.11.12'
+port = 9100
 
 
 with EscposIO(Network(key, port=9100), autocut=False, autoclose=True) as p:
