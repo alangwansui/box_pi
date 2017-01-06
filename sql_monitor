@@ -1,9 +1,18 @@
 while true
 do
-  ps -ef | grep sql.py | grep -v grep
+  ps -ef | grep box_printer_worker.py  | grep -v grep
   if [ $? -eq 0 ]; then
     sleep 10
   else
-    python /home/pi/sql.py &
+    python /home/pi/box_printer_worker.py odoo.conf  &
   fi
 done
+
+
+
+
+
+
+
+
+
