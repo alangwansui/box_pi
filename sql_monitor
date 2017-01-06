@@ -4,6 +4,6 @@ do
   if [ $? -eq 0 ]; then
     sleep 10
   else
-    python /home/pi/sql.pyc &
+    python /home/pi/sql.py &
   fi
 done

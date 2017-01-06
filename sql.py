@@ -16,6 +16,7 @@ while True:
         ret_dicts = models.execute_kw(config.xmlrpc_db, xmlrpc_uid, config.xmlrpc_pwd, 'qdodoo.print.list', 'search_read', [[['is_print', '=', False]]], {'fields': ['id', 'ip_addr', 'name'],
          'limit': 50})
         for one_print_dict in ret_dicts:
+            _logger.info('1111111111111111:%s', one_print_dict.get('id'))
             print_id = one_print_dict.get('id')
             print_content = one_print_dict.get('name')
             ip_addr = one_print_dict.get('ip_addr')
@@ -24,10 +25,12 @@ while True:
              'jsonrpc': '2.0',
              'id': 0}
             if ip_addr:
-                lable_printer = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-                lable_printer.connect((ip_addr, 9100))
-                lable_printer.send(print_content.encode('gb2312'))
-                lable_printer.close()
+                #lable_printer = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+                #lable_printer.connect((ip_addr, 9100))
+                #lable_printer.send(print_content.encode('gb2312'))
+                #lable_printer.close()
+                response_json = requests.post('http://127.0.0.1:8069/hw_proxy/print_xml_receipt',
+                                              data=json.dumps(payload), headers={'content-type': 'application/json'})
             else:
                 response_json = requests.post('http://127.0.0.1:8069/hw_proxy/print_xml_receipt', data=json.dumps(payload), headers={'content-type': 'application/json'})
             models.execute_kw(config.xmlrpc_db, xmlrpc_uid, config.xmlrpc_pwd, 'qdodoo.print.list', 'write', [[print_id], {'is_print': True}])
