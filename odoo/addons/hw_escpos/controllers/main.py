@@ -376,7 +376,7 @@ class EscposProxy(hw_proxy.Proxy):
 
     #jon Printer.Queue include the ip_address
     @http.route('/hw_proxy/huayun_print_xml_receipt', type='json', auth='none', cors='*')
-    def print_xml_receipt(self, receipt, ip_addr):
+    def huayun_print_xml_receipt(self, receipt, ip_addr):
         with EscposIO(Network(ip_addr, port=9100), autocut=False, autoclose=True) as p:
             p.printer.receipt(receipt)
 
