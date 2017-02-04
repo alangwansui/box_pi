@@ -48,7 +48,7 @@ def run(conf):
         if ip_addr:
             data = {
                 'method': 'call',
-                'params': {'receipt': content},
+                'params': {'receipt': content, 'ip_addr': ip_addr},
                 'jsonrpc': '2.0',
                 'id': 0
             }
