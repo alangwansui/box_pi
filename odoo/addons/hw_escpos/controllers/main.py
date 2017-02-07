@@ -382,6 +382,9 @@ class EscposProxy(hw_proxy.Proxy):
 
     @http.route('/hw_proxy/print_xml_receipt', type='json', auth='none', cors='*')
     def print_xml_receipt(self, receipt):
+        #jon , cancel print_xml_receipt, because I replace it with  huayun_print_xml_receipt
+        return True
+
         _logger.info('ESC/POS: PRINT XML RECEIPT')
         val = {}
         for line in receipt.split('++++++')[1:-1]:
